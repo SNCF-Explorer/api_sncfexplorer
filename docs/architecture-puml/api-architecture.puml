@@ -13,39 +13,39 @@ participant "Frontend React" as Front #b3d9ff
 participant "API SNCF" as API #b2f7ef
 database "MongoDB" as DB #ffd6a5
 
-== 🟦 Requête GET : Récupération des gare ==
+== 🟦 Requête GET : Récupération de la catégorie ==
 
 Agent -[#blue]-> Front : va sur la map
-Front -[#blue]-> API : <b>GET</b> /v1/data/gares/
+Front -[#blue]-> API : <b>GET</b> /v1/data/categories/
 API -[#blue]-> DB : requête MongoDB
-DB -[#green,dashed]-> API : Données gares (JSON)
+DB -[#green,dashed]-> API : Données catégorie (JSON)
 API -[#green]-> Front : <b>200 OK</b> (JSON ok)
-Front -[#black]-> Agent : affiche les gares sur la carte
+Front -[#black]-> Agent : affiche les données sur la carte
 
-== 🟦 Requête GET : Récupération d'une gare ==
+== 🟦 Requête GET : Récupération d'une catégorie ==
 
-Agent -[#blue]-> Front : recherche une gare (ex : <b>Paris</b>)
-Front -[#blue]-> API : <b>GET</b> /v1/data/gares/{id}/
+Agent -[#blue]-> Front : recherche une catégorie (ex : <b>Paris</b>)
+Front -[#blue]-> API : <b>GET</b> /v1/data/categories/{id}/
 API -[#blue]-> DB : requête MongoDB
-DB -[#green,dashed]-> API : données de la gare Paris
-API -[#green]-> Front : <b>200 OK</b> (JSON gare)
-Front -[#black]-> Agent : affiche la gare sur la carte
+DB -[#green,dashed]-> API : données de la catégorie Paris
+API -[#green]-> Front : <b>200 OK</b> (JSON catégorie)
+Front -[#black]-> Agent : affiche la catégorie sur la carte
 
-== 🟧 Requête POST : Ajout d'une gare ==
+== 🟧 Requête POST : Ajout d'une catégorie ==
 
-Agent -[#orange]-> Front : entre une nouvelle ville
-Front -[#orange]-> API : <b>POST</b> /v1/data/gares/{id}/
-API -[#orange]-> DB : insertion MongoDB
+Agent -[#orange]-> Front : ajoute un élément d'une catégorie
+Front -[#orange]-> API : <b>POST</b> /v1/data/categories/{id}/
+API -[#orange]-> DB : insertion de la donnée dans MongoDB
 DB -[#green,dashed]-> API : <b>200 OK</b>
 API -[#green]-> Front : JSON de confirmation
-Front -[#black]-> Agent : gare ajoutée à la carte
+Front -[#black]-> Agent : catégorie ajoutée à la carte
 
-== 🟥 Requête DELETE : Ajout d'une gare ==
-Agent -[#orange]-> Front : entre le nom d'une ville
-Front -[#orange]-> API : <b>POST</b> /v1/data/gares/{id}/
-API -[#orange]-> DB : Suppression de MongoDB
+== 🟥 Requête DELETE : Ajout d'une catégorie ==
+Agent -[#orange]-> Front : supprime un élément d'une catégorie
+Front -[#orange]-> API : <b>POST</b> /v1/data/categories/{id}/
+API -[#orange]-> DB : Suppression de la donnée dans MongoDB
 DB -[#green,dashed]-> API : <b>200 OK</b>
 API -[#green]-> Front : JSON de confirmation
-Front -[#black]-> Agent : gare supprimée à la carte
+Front -[#black]-> Agent : donnée supprimée de la carte
 
 @enduml
